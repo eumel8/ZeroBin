@@ -18,17 +18,18 @@ if ( $data->ref === 'refs/heads/master' ) {
   if( file_exists($LOCAL_REPO) ) 
   {
 
-    $whoami = shell_exec("whoami");
-    echo "whoami: $whoami".PHP_EOL;
+   // 1. generate ssh-key for httpd user
+   // 2. put the public key as deploy key on github
+   // 3. set up local ssh config (i.e. /var/lib/wwwrun/.ssh/config)
+   // Host *
+   //         StrictHostKeyChecking no
+   //                 PasswordAuthentication no
+   //
 
     $sshagent = shell_exec("ssh-agent bash -c 'ssh-add; git pull;'");
     echo "sshagent: $sshagent".PHP_EOL;
 
-    // If there is already a repo, just run a git pull to grab the latest changes       
-#    $git_pull = shell_exec("git pull 2>&1");
-#    echo "Git Pull: $git_pull".PHP_EOL;
-
-    die("The End! " . mktime());    
+    die("Sucess deployed! " . mktime());    
   } 
   else 
   {
@@ -39,7 +40,7 @@ if ( $data->ref === 'refs/heads/master' ) {
     echo "git clone: repo cloned successfully!".PHP_EOL;
 
 
-    die("The End! " . mktime());
+    die("Sucessfuly cloned! " . mktime());
   }
 } 
 
