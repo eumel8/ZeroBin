@@ -21,6 +21,9 @@ if ( $data->ref === 'refs/heads/master' ) {
     $whoami = shell_exec("whoami");
     echo "whoami: $whoami".PHP_EOL;
 
+    $sshagent = shell_exec("ssh-agent bash -c 'ssh-add; ssh-add -l;'");
+    echo "sshagent: $sshagent".PHP_EOL;
+
     // If there is already a repo, just run a git pull to grab the latest changes       
     $git_pull = shell_exec("git pull 2>&1");
     echo "Git Pull: $git_pull".PHP_EOL;
