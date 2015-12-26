@@ -26,7 +26,7 @@ if ( $data->ref === 'refs/heads/master' ) {
    //                 PasswordAuthentication no
    //
 
-    $sshagent = shell_exec("ssh-agent bash -c 'ssh-add; git pull;'");
+    $sshagent = shell_exec("cd {$LOCAL_REPO} && ssh-agent bash -c 'ssh-add; git pull;'");
     echo "sshagent: $sshagent".PHP_EOL;
 
     die("Sucess deployed! " . mktime());    
