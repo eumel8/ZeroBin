@@ -21,12 +21,12 @@ if ( $data->ref === 'refs/heads/master' ) {
     $whoami = shell_exec("whoami");
     echo "whoami: $whoami".PHP_EOL;
 
-    $sshagent = shell_exec("ssh-agent bash -c 'ssh-add; ssh-add -l;'");
+    $sshagent = shell_exec("ssh-agent bash -c 'ssh-add; git pull;'");
     echo "sshagent: $sshagent".PHP_EOL;
 
     // If there is already a repo, just run a git pull to grab the latest changes       
-    $git_pull = shell_exec("git pull 2>&1");
-    echo "Git Pull: $git_pull".PHP_EOL;
+#    $git_pull = shell_exec("git pull 2>&1");
+#    echo "Git Pull: $git_pull".PHP_EOL;
 
     die("The End! " . mktime());    
   } 
@@ -35,7 +35,7 @@ if ( $data->ref === 'refs/heads/master' ) {
 
     // If the repo does not exist, then clone it into the parent directory
 
-    shell_exec("cd {$LOCAL_ROOT} && git clone {$REMOTE_REPO} {$LOCAL_REPO_NAME}");
+    shell_exec("cd {$LOCAL_ROOT} && ssh-agent bash -c 'ssh-add; git clone {$REMOTE_REPO} {$LOCAL_REPO_NAME}'");
     echo "git clone: repo cloned successfully!".PHP_EOL;
 
 
