@@ -20,7 +20,8 @@ if ( $data->ref === 'refs/heads/master' ) {
 
    // 1. generate ssh-key for httpd user
    // 2. put the public key as deploy key on github
-   // 3. set up local ssh config (i.e. /var/lib/wwwrun/.ssh/config)
+   // 3. setup json webhook 
+   // 4. set up local ssh config (i.e. /var/lib/wwwrun/.ssh/config)
    // Host *
    //         StrictHostKeyChecking no
    //                 PasswordAuthentication no
