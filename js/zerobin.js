@@ -359,7 +359,10 @@ function send_data() {
                 var deleteUrl = scriptLocation() + "?pasteid=" + data.id + '&deletetoken=' + data.deletetoken;
                 showStatus('');
 
-                $('div#pastelink').html('Your paste is <a id="pasteurl" href="' + url + '">' + url + '</a> <span id="copyhint">(Hit CTRL+C to copy)</span>');
+		$('div#pastelink').html('Your paste is <a href="' + url + '">' + url + '</a>');
+		                $('div#pastelink')
+		                    .append('&nbsp;&nbsp;<button id="shortenbutton" onclick="document.location=\'' + shortenUrl(url) + '\'"><img src="img/icon_shorten.png" width="13" height="15" />Shorten URL</button>')
+		                    .show();
                 $('div#deletelink').html('<a href="' + deleteUrl + '">Delete link</a>');
                 $('div#pasteresult').show();
                 selectText('pasteurl'); // We pre-select the link so that the user only has to CTRL+C the link.
@@ -381,6 +384,15 @@ function send_data() {
         });
 }
 
+
+/**
+ * - * Generate link to URL shortener.
+ *   - */
+function shortenUrl(url) {
+	    return 'http://snipurl.com/site/snip?link=' + encodeURIComponent(url);
+	}
+	
+/**
 
 /** Text range selection.
  *  From: http://stackoverflow.com/questions/985272/jquery-selecting-text-in-an-element-akin-to-highlighting-with-your-mouse
